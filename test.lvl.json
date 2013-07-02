@@ -1,0 +1,34 @@
+{
+  "gravity": {
+    "x": 0,
+    "y": 10
+  },
+  "objects": {
+    "ground": {
+      "fixtures": [
+        {
+          "density": 1,
+          "friction": 0.5,
+          "restitution": 0.3,
+          "shapeType": "box",
+          "shape": {
+            "x": 9.6,
+            "y": 0.6400000000000001
+          }
+        }
+      ],
+      "bodyDef": {
+        "type": 0,
+        "position": {
+          "x": 9.6,
+          "y": 12.16
+        }
+      },
+      "name": "The Ground"
+    }
+  },
+  "playerPos": {
+    "x": 7,
+    "y": 7
+  }
+}

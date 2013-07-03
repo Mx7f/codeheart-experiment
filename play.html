@@ -1,6 +1,8 @@
 <!DOCTYPE html
           PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html oncontextmenu="return false">
+  <head>
 <meta charset="utf-8"/><!-- must be in the first 1024 bytes -->    
 <!-- 
 
@@ -59,8 +61,6 @@
    USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
    DAMAGE.
 -->
-<html oncontextmenu="return false" >
-  <head>
     <title>Game</title>
 
     <meta http-equiv="content-script-type" content="text/javascript"/>
@@ -87,6 +87,10 @@
 
     <!-- Browser compatibility -->
     <script>
+      var _ch_consoleError = console.error;
+      // Suppress console errors from the browser while loading codeheart.js
+      console.error = function() {}
+
       if ((navigator.userAgent.toLowerCase().indexOf('safari') == -1) &&
           (navigator.userAgent.toLowerCase().indexOf('chrome') == -1) &&
           (navigator.userAgent.toLowerCase().indexOf('iphone') == -1) &&
@@ -101,7 +105,7 @@
                 "the iOS 5.1 Safari web browser, Firefox 19.0 or newer.");
       }
 
-      var _ch_PLAY_VERSION = 1.4;
+      var _ch_PLAY_VERSION = 1.5;
       
       // Make several attempts to load the codeheart.js library from different locations.
       var _ch_sourceURL;
@@ -125,9 +129,12 @@
     <script>tryToLoad("../codeheart.js");</script>
     <script>tryToLoad("../../codeheart.js");</script>
     <script>tryToLoad("../../../codeheart.js");</script>
-    <script>tryToLoad("http://www.codeheartjs.com/1.4/codeheart.js");</script>
+    <script>tryToLoad("http://www.codeheartjs.com/1.5/codeheart.js");</script>
 
     <script>
+       // Restore the console error functionality
+       console.error = _ch_consoleError;
+
        if (typeof codeheart === 'undefined') {
            alert("You have to put codeheart.js in this directory, (" + window.location +
                  ") put it in the " + 
@@ -148,9 +155,10 @@
   </head>
 
   <body oncontextmenu="return false" onload="_ch_onLoad();" style="margin: 0px; background: #000;">
-    <script>_ch_makeCanvas();</script>   
+    <script>_ch_makeCanvas();</script>
+
+    <!-- The game code -->
+    <script src="game.js?refresh=1" type="text/javascript"></script>
   </body>
 
-  <!-- The game code -->
-  <script src="game.js?refresh=1" type="text/javascript"></script>
 </html>
